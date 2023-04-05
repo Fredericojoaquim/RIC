@@ -1059,6 +1059,18 @@
 
        <!--DATA TABLE-->
    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
+
+    <!-- data table JS
+		============================================ -->
+        <script src="{{url('js/data-table/bootstrap-table.js')}}"></script>
+        <script src="{{url('js/data-table/tableExport.js')}}"></script>
+        <script src="{{url('js/data-table/data-table-active.js')}}"></script>
+        <script src="{{url('js/data-table/bootstrap-table-editable.js')}}"></script>
+        <script src="{{url('js/data-table/bootstrap-editable.js')}}"></script>
+        <script src="{{url('js/data-table/bootstrap-table-resizable.js')}}"></script>
+        <script src="{{url('js/data-table/colResizable-1.5.source.js')}}"></script>
+        <script src="{{url('js/data-table/bootstrap-table-export.js')}}"></script>
 </body>
 
 </html>

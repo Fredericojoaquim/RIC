@@ -15,50 +15,144 @@
 
 
         <div class="row">
+             <!-- Static Table Start -->
+        <div class="data-table-area mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
+                        <div class="sparkline13-list">
+                          <h3 class="text-center text-primary">  <strong>Utilizadores</strong> </h1>
+                        <div class="sparkline13-list">
+                            <div class="sparkline13-hd">
+                                <div class="main-sparkline13-hd">
+                                     <!--   <h1 class="text-primary text-center"><span class="table-project-n">Utilizadores</span> </h1>-->
+                                </div>
+                            </div>
+                            <div class="sparkline13-graph allwidth">
+                                <div class="datatable-dashv1-list custom-datatable-overright">
+                                    <div id="toolbar">
+                                        <select class="form-control dt-tb">
+											<option value="">Export Basic</option>
+											<option value="all">Export All</option>
+											<option value="selected">Export Selected</option>
+										</select>
+                                    </div>
+                                    <table class="mycenter" id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
+                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
+                                        <thead>
+                                            <tr>
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
-                <div class="sparkline13-list">
-                    <div class="sparkline13-hd">
-                        <div class="main-sparkline13-hd">
-                            <h3 class="text-center text-primary">  <strong>Utilizadores</strong> </h1>
-                        </div>
-                    </div>
-                    <div class="sparkline13-graph">
-                        <div class="datatable-dashv1-list custom-datatable-overright text-center" >
+                                                <th data-field="id">ID</th>
+                                                <th data-field="name" data-editable="true">Nome</th>
+                                                <th data-field="email" data-editable="true">Email</th>
+                                                <th data-field="phone" data-editable="true">Perfil</th>
+                                                <th data-field="complete">Estado</th>
+
+                                                <th data-field="action">Action</th>
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                                <td>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm">Alterar</button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
+                                            <tr>
+
+                                                <td>1</td>
+                                                <td>Fred Joaquim</td>
+                                                <td>admin@uttara.com</td>
+                                                <td>Estudante</td>
+                                                <td>activo</td>
+                                            </tr>
 
 
 
-                            <table id="datatable" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
-                                data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
-                                <thead>
-                                    <tr>
-                                        <th data-field="state" data-checkbox="true"></th>
-                                        <th data-field="id">ID</th>
-                                        <th data-field="name" data-editable="true">Nome</th>
-                                        <th data-field="email" data-editable="true">Email</th>
-                                        <th data-field="phone" data-editable="true">Perfil</th>
-                                        <th data-field="phone" data-editable="true">Estado</th>
-
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>Fred Joaquim</td>
-                                        <td>admin@uttara.com</td>
-                                        <td>Estudante</td>
-
-                                        </td>
-
-                                    </tr>
-
-                                </tbody>
-                            </table>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+        <!-- Static Table End -->
         </div>
     </div>
 </div>
