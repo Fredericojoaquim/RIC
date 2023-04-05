@@ -1,0 +1,42 @@
+.bg-login{
+   background-color: #343a40;
+}
+
+.white-text{
+    color: aliceblue;
+}
+
+.myimg{
+
+}
+
+body {
+    /* Background pattern from Toptal Subtle Patterns
+    height: 400px;
+    width: 100%;
+    background-image: url("../img/uan.jpg");*/
+ }
+
+ .mylogo{
+    width: 300px;
+    height: 300px;
+ }
+ .home{
+    max-width: 100%;
+    max-height: 1000px;
+    background-image: url('../img/home.jpg');
+
+ }
+
+ .img-home{
+    height: 100%;
+    width: 100%;
+ }
+
+ .m-right{
+    margin-bottom: 20px;
+ }
+
+ .top{
+    margin-top: 30px;
+ }
