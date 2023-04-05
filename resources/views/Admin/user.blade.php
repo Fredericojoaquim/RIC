@@ -54,92 +54,27 @@
 
                                         </thead>
                                         <tbody>
+                                            @foreach ($users as $u)
                                             <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-
-                                            </tr>
-                                            <tr>
-
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
+                                                <td>{{$u->id}}</td>
+                                                <td>{{$u->name}}</td>
+                                                <td>{{$u->email}}</td>
+                                                <td>{{$u->permicao}}</td>
+                                                <td>{{$u->status}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm">Alterar</button>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
                                                 </td>
 
                                             </tr>
-                                            <tr>
+                                            @endforeach
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
 
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
-                                            <tr>
-
-                                                <td>1</td>
-                                                <td>Fred Joaquim</td>
-                                                <td>admin@uttara.com</td>
-                                                <td>Estudante</td>
-                                                <td>activo</td>
-                                            </tr>
 
 
 

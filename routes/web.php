@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,4 @@ Route::get('/ric/user', function () {
     return view('admin.user');
 });
 
+Route::get('/user', [UserController::class,'index'])->middleware('auth');
