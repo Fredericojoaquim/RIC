@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,3 +43,4 @@ Route::get('/ric/user', function () {
 });
 
 Route::get('/user', [UserController::class,'index'])->middleware('auth');
+Route::post('/user/registar',[UserController::class,'store'])->middleware('auth');

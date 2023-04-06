@@ -106,20 +106,22 @@
               <!--  <i class="educate-icon educate-checked modal-check-pro"></i>-->
                 <h2>Registo de Utilizador</h2>
                 <div class="row">
-                    <form action="">
+                    <form action = "{{url('/user/registar')}}"  method="Post" enctype="multipart/form-data">
+                        @csrf
 
                         <div class="form-group">
-                            <input name="firstname" type="text" class="form-control" placeholder="Nome">
+                            <input name="name" type="text" class="form-control" placeholder="Nome">
                         </div>
                         <div class="form-group">
-                            <input name="firstname" type="email" class="form-control" placeholder="Seu Email">
+                            <input name="email" type="email" class="form-control" placeholder="Seu Email">
                         </div>
 
                         <div class="form-group">
-                            <select name="country" class="form-control">
+                            <select name="permission" class="form-control">
                                     <option value="none" selected="" disabled="">Perfil</option>
                                     <option value="Bibliotecário">Bibliotecário</option>
-                                    <option value="Docente">Docente</option>
+                                    <option value="Docente/Pesquisador
+                                    ">Docente ou Pesquisador</option>
                                     <option value="Estudante">Estudante</option>
                                 </select>
                         </div>
@@ -133,7 +135,7 @@
                         </div>
 
                         <div class="form-group">
-                            <input name="firstname" type="file" class="form-control" placeholder="carrega sua foto">
+                            <input name="imagem" type="file" class="form-control" placeholder="Escolha uma foto">
                         </div>
 
                         <div class="col-lg-12 text-right">

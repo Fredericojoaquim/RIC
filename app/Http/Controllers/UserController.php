@@ -45,7 +45,31 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $u=new User();
+        $u->name=$request->name;
+        $u->email=$request->email;
+        $u->status='ativo';
+        $u->password=Hash::make($request->password);
+       // $u->imagem=$request->imagem;//adicionar o caminho da imagem aqui
+        $u->givePermissionTo($request->permission);
+     //  var_dump($u);
+     // event(new Registered($u));
+        if($request->hasFile('imagem')){
+
+            $requestImagem = $request->imagem;
+            $extensao = $requestImagem->extension();
+            $nomeImagem = md5($requestImagem->getClientOriginalName().strtotime("now")).".".$extensao;
+            $request->imagem->move(public_path('imagens'),$nomeImagem);
+            $u->img = $nomeImagem;
+        }else{
+
+            $u->img = null;
+        }
+        //dd($u);
+        $u->save();
+        Auth::login($u);
+
+        //return redirect(RouteServiceProvider::HOME);
     }
 
     /**
