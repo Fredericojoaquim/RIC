@@ -19,6 +19,9 @@
         <div class="data-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
+                    <div class="alert alert-success" role="alert">
+                        <p>{{$sms}}</p>
+                    </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
                         <div class="sparkline13-list">
@@ -63,7 +66,7 @@
                                                 <td>{{$u->permicao}}</td>
                                                 <td>{{$u->status}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm">Alterar</button>
+                                                    <a href="" class="btn btn-custon-rounded-four btn-default  btn-sm">Alterar</a>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Bloquear</button>
                                                 </td>
@@ -163,7 +166,7 @@
 
 $(document).ready(function(){
         //codigo para inicializar a data table
-     var table=$('#datatable').DataTable();
+
 });
 </script>
 

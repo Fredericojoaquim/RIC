@@ -16,7 +16,7 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function allUser()
     {
         //
         $users=DB::table('model_has_permissions')
@@ -24,6 +24,13 @@ class UserController extends Controller
         ->join('users','model_id','=','users.id')
         ->select('users.*', 'permissions.name as permicao')
         ->get();
+        return $users;
+    }
+
+    public function index()
+    {
+        //
+        $users=$this->allUser();
         return view('admin.user',['users'=>$users]);
     }
 
@@ -67,7 +74,8 @@ class UserController extends Controller
         }
         //dd($u);
         $u->save();
-        Auth::login($u);
+       return view('admin.usuario',['users'=>$users=$this->allUser(),'sms'=>'Utilizador registado com sucesso']);
+        //Auth::login($u);
 
         //return redirect(RouteServiceProvider::HOME);
     }

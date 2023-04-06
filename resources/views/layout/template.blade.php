@@ -1057,8 +1057,7 @@
 		============================================ -->
    <!-- <script src="{{url('js/tawk-chat.js')}}"></script> -->
 
-       <!--DATA TABLE-->
-   <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+
 
 
     <!-- data table JS
