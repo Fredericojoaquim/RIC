@@ -56,6 +56,7 @@ class UserController extends Controller
         $u->name=$request->name;
         $u->email=$request->email;
         $u->status='ativo';
+       // dd($request->password);
         $u->password=Hash::make($request->password);
        // $u->imagem=$request->imagem;//adicionar o caminho da imagem aqui
         $u->givePermissionTo($request->permission);
@@ -74,7 +75,7 @@ class UserController extends Controller
         }
         //dd($u);
         $u->save();
-       return view('admin.usuario',['users'=>$users=$this->allUser(),'sms'=>'Utilizador registado com sucesso']);
+       return  view('admin.usuario',['users'=>$users=$this->allUser(),'sms'=>'Utilizador registado com sucesso']);
         //Auth::login($u);
 
         //return redirect(RouteServiceProvider::HOME);
@@ -89,6 +90,15 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        $user=DB::table('model_has_permissions')
+        ->where('users.id','=',$id)
+        ->join('permissions','permission_id','=','permissions.id')
+        ->join('users','model_id','=','users.id')
+        ->select('users.*', 'permissions.name as permicao')
+        ->get();
+       // dd($user);
+        return view('admin.Edit_user',['users'=>$this->allUser(),'user'=>$user]);
+
     }
 
     /**
@@ -123,5 +133,18 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function bloquearUser(Request $request){
+
+        $u=User::findOrFail($request->id_user);
+        $u->status='bloqueado';
+
+        $u->update();
+        return view('admin.user',['users'=>$this->allUser(),'sms'=>'Utilizador Bloqueado com sucesso']);
+
+
+
     }
 }

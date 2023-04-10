@@ -1,8 +1,8 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-@section('title', 'RIC-User')
-@section('location', 'User')
+@section('title', 'RIC-Coleções')
+@section('location', 'Coleções')
 
 
 @section('content')
@@ -22,13 +22,16 @@
             </div>
             @endif
              <!-- Static Table Start -->
+
+
+
         <div class="data-table-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
                         <div class="sparkline13-list">
-                          <h3 class="text-center text-primary">  <strong>Utilizadores</strong> </h1>
+                          <h3 class="text-center text-primary">  <strong>Coleções</strong> </h1>
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
@@ -50,35 +53,31 @@
                                             <tr>
 
                                                 <th data-field="id">ID</th>
-                                                <th data-field="name" data-editable="true">Nome</th>
-                                                <th data-field="email" data-editable="true">Email</th>
-                                                <th data-field="phone" data-editable="true">Perfil</th>
-                                                <th data-field="complete">Estado</th>
-
+                                                <th data-field="name" data-editable="true">Descrição</th>
                                                 <th data-field="action">Acção</th>
                                             </tr>
 
                                         </thead>
                                         <tbody>
-                                            @foreach ($users as $u)
+                                     @if (isset($colecoes))
+
+
+
+
+                                            @foreach ($colecoes as $c)
                                             <tr>
 
-                                                <td>{{$u->id}}</td>
-                                                <td>{{$u->name}}</td>
-                                                <td>{{$u->email}}</td>
-                                                <td>{{$u->permicao}}</td>
-                                                <td>{{$u->status}}</td>
+                                                <td>{{$c->id}}</td>
+                                                <td>{{$c->descricao}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/user/edit/$u->id")}}">Alterar</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm" data-toggle="modal" data-target="#informationModal" id="{{$u->id}}" onclick="retornaid({{$u->id}})">Bloquear</button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/user/edit/$c->id")}}">Alterar</a> </button>
+
                                                 </td>
 
                                             </tr>
                                             @endforeach
 
-
-
+                                    @endif
 
 
 
@@ -111,39 +110,15 @@
             </div>
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
-                <h2>Registo de Utilizador</h2>
+                <h2>Registo de Coleção</h2>
                 <div class="row">
-                    <form action = "{{url('/user/registar')}}"  method="Post" enctype="multipart/form-data">
+                    <form action = "{{url('/colecoes/registar')}}"  method="Post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
-                            <input name="name" type="text" class="form-control" placeholder="Nome">
-                        </div>
-                        <div class="form-group">
-                            <input name="email" type="email" class="form-control" placeholder="Seu Email">
+                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Coleção">
                         </div>
 
-                        <div class="form-group">
-                            <select name="permission" class="form-control">
-                                    <option value="none" selected="" disabled="">Perfil</option>
-                                    <option value="Bibliotecário">Bibliotecário</option>
-                                    <option value="Docente/Pesquisador
-                                    ">Docente ou Pesquisador</option>
-                                    <option value="Estudante">Estudante</option>
-                                </select>
-                        </div>
-
-                        <div class="form-group">
-                            <input name="password" type="password" class="form-control" placeholder="senha">
-                        </div>
-
-                        <div class="form-group">
-                            <input name="password1" type="password" class="form-control" placeholder="confirmar sua senha">
-                        </div>
-
-                        <div class="form-group">
-                            <input name="imagem" type="file" class="form-control" placeholder="Escolha uma foto">
-                        </div>
 
                         <div class="col-lg-12 text-right">
                             <button type="submit" class="btn btn-custon-rounded-four btn-primary">Registar</button>

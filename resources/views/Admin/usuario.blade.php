@@ -1,7 +1,7 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-@section('title', 'User')
+@section('title', 'RIC-User')
 @section('location', 'User')
 
 
@@ -20,7 +20,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="alert alert-success" role="alert">
-                        <p>{{$sms}}</p>
+                        <p class="text-center">{{$sms}}</p>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
@@ -52,7 +52,7 @@
                                                 <th data-field="phone" data-editable="true">Perfil</th>
                                                 <th data-field="complete">Estado</th>
 
-                                                <th data-field="action">Action</th>
+                                                <th data-field="action">Acção</th>
                                             </tr>
 
                                         </thead>
@@ -107,7 +107,7 @@
                 <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
             </div>
             <div class="modal-body">
-              <!--  <i class="educate-icon educate-checked modal-check-pro"></i>-->
+               <i class="educate-icon educate-checked modal-check-pro"></i>
                 <h2>Registo de Utilizador</h2>
                 <div class="row">
                     <form action = "{{url('/user/registar')}}"  method="Post" enctype="multipart/form-data">

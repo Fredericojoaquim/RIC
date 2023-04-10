@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ColecoesController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 
 /*
@@ -20,7 +21,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('admin.dashboard');
 })->middleware(['auth'])->name('dashboard');
 
 
@@ -44,3 +45,8 @@ Route::get('/ric/user', function () {
 
 Route::get('/user', [UserController::class,'index'])->middleware('auth');
 Route::post('/user/registar',[UserController::class,'store'])->middleware('auth');
+Route::get('/user/edit/{id}', [UserController::class,'show'])->middleware('auth');
+Route::put('/user/bloquear',[UserController::class,'bloquearUser'])->middleware('auth');
+//Coleções
+Route::get('/colecoes', [ColecoesController::class,'index'])->middleware('auth');
+Route::post('/colecoes/registar',[ColecoesController::class,'store'])->middleware('auth');
