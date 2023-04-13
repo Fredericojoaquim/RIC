@@ -1,13 +1,21 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-@section('title', 'RIC-Coleções')
-@section('location', 'Coleções')
+@section('title', 'User')
+@section('location', 'User')
 
 
 @section('content')
 
  <!-- Static Table Start -->
+
+ <div class="data-table-area mg-b-15">
+    <div class="container-fluid">
+
+
+
+        <div class="row">
+            <!-- Static Table Start -->
 
  <div class="data-table-area mg-b-15">
     <div class="container-fluid">
@@ -100,6 +108,7 @@
 <!-- Static Table End -->
 
 
+
 <!-- Modal register Coleção-->
 
 <div id="PrimaryModalftblack" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
@@ -138,8 +147,6 @@
 </div>
 <!-- End Modal register Coleção -->
 
-
-
 <!-- Modal Update Coleção-->
 
 <div id="ModalUpdate" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
@@ -150,13 +157,15 @@
             </div>
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
-                <h2>Registo de Coleção</h2>
+                <h2>Alterar Coleção</h2>
                 <div class="row">
-                    <form action = "{{url('/colecoes/alterar')}}"  method="Post" enctype="multipart/form-data">
+                    <form action = "{{url('/colecoes/update')}}"  method="Post" enctype="multipart/form-data">
+                        {{ method_field('PUT') }}
                         @csrf
 
                         <div class="form-group">
-                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="descricao" value="{{$col->descricao}}" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="id" value="{{$col->id}}" type="hidden">
                         </div>
 
 
@@ -164,10 +173,6 @@
                             <button type="submit" class="btn btn-custon-rounded-four btn-primary">Registar</button>
                             <a data-dismiss="modal" href="#" class="btn btn-custon-rounded-four btn-danger mb-4">Cancelar</a>
                         </div>
-
-
-
-
                     </form>
 
 
@@ -178,50 +183,15 @@
 </div>
 <!-- End Modal register Coleção -->
 
-
-
-
-
-
-
-
-
-<!-- End Modal information delete -->
-<div id="informationModal" class="modal modal-edu-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-close-area modal-close-df">
-                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
-                </div>
-
-                <div class="modal-body">
-                    <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
-                    <p>Tem certeza que deseja Bloquear este utilizador?</p>
-                    <form action="{{url('/user/bloquear')}}" method="post">
-                        @csrf
-                        {{ method_field('PUT') }}
-                        <input name="id_user" id="user_id" type="hidden" >
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-custon-rounded-four btn-danger ">Sim</button>
-
-                       </div>
-                    </form>
-
-                </div>
-
-        </div>
-    </div>
-</div>
-<!-- End Modal information delete -->
-
+<script src="{{url('js/jquery-1.12.4.min.js')}}"></script>
 
 <script>
-  function retornaid(id){
-     $('#user_id').val(id);
-    }
+
 $(document).ready(function(){
         //codigo para inicializar a data table
-     var table=$('#datatable').DataTable();
+    // var table=$('#datatable').DataTable();
+    $('#ModalUpdate').modal('show');
+
 });
 </script>
 

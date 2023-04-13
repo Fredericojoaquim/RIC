@@ -48,3 +48,8 @@ body {
  .mycenter{
     margin: 0 auto;
  }
+
+ .logo-img{
+    width: 170px;
+    height: 60px;
+ }

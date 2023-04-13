@@ -50,3 +50,6 @@ Route::put('/user/bloquear',[UserController::class,'bloquearUser'])->middleware(
 //Coleções
 Route::get('/colecoes', [ColecoesController::class,'index'])->middleware('auth');
 Route::post('/colecoes/registar',[ColecoesController::class,'store'])->middleware('auth');
+Route::get('/colecoes/edit/{id}',[ColecoesController::class,'edit'])->middleware('auth');
+Route::put('/colecoes/update',[ColecoesController::class,'update'])->middleware('auth');
+

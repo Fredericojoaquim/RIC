@@ -57,7 +57,7 @@ class ColecoesController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -68,7 +68,9 @@ class ColecoesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $c=ColecaoModel::findOrFail($id);
+
+        return view('admin.colecoesEdit',['colecoes'=>$this->allColection(),'col'=>$c]);
     }
 
     /**
@@ -78,9 +80,14 @@ class ColecoesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //
+        $c=['descricao'=>$request->descricao];
+        ColecaoModel::findOrFail($request->id)->update($c);
+        return view('admin.colecoe',['colecoes'=>$this->allColection(),'sms'=>'Coleção alterada com sucesso']);
+
+
     }
 
     /**
