@@ -1,8 +1,8 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-@section('title', 'RIC-Coleções')
-@section('location', 'Coleções')
+@section('title', 'RIC-Categoria')
+@section('location', 'Categoria')
 
 
 @section('content')
@@ -31,7 +31,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
                         <div class="sparkline13-list">
-                          <h3 class="text-center text-primary">  <strong>Coleções</strong> </h1>
+                          <h3 class="text-center text-primary">  <strong>Categorias</strong> </h1>
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
@@ -59,18 +59,18 @@
 
                                         </thead>
                                         <tbody>
-                                     @if (isset($colecoes))
+                                     @if (isset($cat))
 
 
 
 
-                                            @foreach ($colecoes as $c)
+                                            @foreach ($cat as $c)
                                             <tr>
 
                                                 <td>{{$c->id}}</td>
                                                 <td>{{$c->descricao}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/colecoes/edit/$c->id")}}">Alterar</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/categoria/edit/$c->id")}}">Alterar</a> </button>
 
                                                 </td>
 
@@ -100,7 +100,7 @@
 <!-- Static Table End -->
 
 
-<!-- Modal register Coleção-->
+<!-- Modal register Categoria-->
 
 <div id="PrimaryModalftblack" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">
@@ -110,13 +110,13 @@
             </div>
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
-                <h2>Registo de Coleção</h2>
+                <h2>Registo de Categoria</h2>
                 <div class="row">
-                    <form action = "{{url('/colecoes/registar')}}"  method="Post" enctype="multipart/form-data">
+                    <form action = "{{url('/categoria/registar')}}"  method="Post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
-                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Categoria">
                         </div>
 
 

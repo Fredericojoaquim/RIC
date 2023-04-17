@@ -3,9 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ColecoesController;
+use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\TrabalhoController;
 
-/*
+/*TrabalhoController:
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -52,4 +54,10 @@ Route::get('/colecoes', [ColecoesController::class,'index'])->middleware('auth')
 Route::post('/colecoes/registar',[ColecoesController::class,'store'])->middleware('auth');
 Route::get('/colecoes/edit/{id}',[ColecoesController::class,'edit'])->middleware('auth');
 Route::put('/colecoes/update',[ColecoesController::class,'update'])->middleware('auth');
-
+//Categorias
+Route::get('/categorias', [CategoriaController::class,'index'])->middleware('auth');
+Route::post('/categoria/registar',[CategoriaController::class,'store'])->middleware('auth');
+Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit'])->middleware('auth');
+Route::put('/categoria/update',[CategoriaController::class,'update'])->middleware('auth');
+//
+Route::get('/categorias', [TrabalhoController::class,'index'])->middleware('auth');

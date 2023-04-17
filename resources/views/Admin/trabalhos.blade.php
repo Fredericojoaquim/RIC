@@ -1,8 +1,8 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-@section('title', 'RIC-Coleções')
-@section('location', 'Coleções')
+@section('title', 'RIC-Depósitos')
+@section('location', 'Depósitos')
 
 
 @section('content')
@@ -31,7 +31,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
                         <div class="sparkline13-list">
-                          <h3 class="text-center text-primary">  <strong>Coleções</strong> </h1>
+                          <h3 class="text-center text-primary">  <strong>Trabalhos cientifico</strong> </h1>
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
@@ -53,24 +53,27 @@
                                             <tr>
 
                                                 <th data-field="id">ID</th>
+                                                <th data-field="id">Categoria</th>
+                                                <th data-field="id">Coleção</th>
+                                                <th data-field="id">Estado</th>
                                                 <th data-field="name" data-editable="true">Descrição</th>
                                                 <th data-field="action">Acção</th>
                                             </tr>
 
                                         </thead>
                                         <tbody>
-                                     @if (isset($colecoes))
+                                     @if (isset($trab))
 
 
 
 
-                                            @foreach ($colecoes as $c)
+                                            @foreach ($trab as $t)
                                             <tr>
 
-                                                <td>{{$c->id}}</td>
-                                                <td>{{$c->descricao}}</td>
+                                                <td>{{$t->id}}</td>
+                                                <td>{{$t->descricao}}</td>
                                                 <td>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/colecoes/edit/$c->id")}}">Alterar</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/categoria/edit/$c->id")}}">Alterar</a> </button>
 
                                                 </td>
 
@@ -100,7 +103,7 @@
 <!-- Static Table End -->
 
 
-<!-- Modal register Coleção-->
+<!-- Modal register Categoria-->
 
 <div id="PrimaryModalftblack" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">
@@ -110,13 +113,13 @@
             </div>
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
-                <h2>Registo de Coleção</h2>
+                <h2>Registo de Categoria</h2>
                 <div class="row">
-                    <form action = "{{url('/colecoes/registar')}}"  method="Post" enctype="multipart/form-data">
+                    <form action = "{{url('/categoria/registar')}}"  method="Post" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group">
-                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Categoria">
                         </div>
 
 
@@ -139,9 +142,7 @@
 <!-- End Modal register Coleção -->
 
 
-
-<!-- Modal Update Coleção-->
-
+<!-- Modal Update Categoria-->
 <div id="ModalUpdate" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -150,13 +151,15 @@
             </div>
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
-                <h2>Registo de Coleção</h2>
+                <h2>Alterar de Categoria</h2>
                 <div class="row">
-                    <form action = "{{url('/colecoes/alterar')}}"  method="Post" enctype="multipart/form-data">
+                    <form action = "{{url('/categoria/update')}}"  method="Post" enctype="multipart/form-data">
                         @csrf
+                        {{ method_field('PUT') }}
 
                         <div class="form-group">
-                            <input name="descricao" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="descricao" type="text" value="{{$ca->descricao}}" class="form-control" placeholder="Nome da Categoria">
+                            <input name="id" type="hidden" value="{{$ca->id}}" >
                         </div>
 
 
@@ -186,34 +189,6 @@
 
 
 
-<!-- End Modal information delete -->
-<div id="informationModal" class="modal modal-edu-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-close-area modal-close-df">
-                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
-                </div>
-
-                <div class="modal-body">
-                    <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
-                    <p>Tem certeza que deseja Bloquear este utilizador?</p>
-                    <form action="{{url('/user/bloquear')}}" method="post">
-                        @csrf
-                        {{ method_field('PUT') }}
-                        <input name="id_user" id="user_id" type="hidden" >
-                        <div class="mt-4">
-                            <button type="submit" class="btn btn-custon-rounded-four btn-danger ">Sim</button>
-
-                       </div>
-                    </form>
-
-                </div>
-
-        </div>
-    </div>
-</div>
-<!-- End Modal information delete -->
-
 <script src="{{url('js/vendor/jquery-1.12.4.min.js')}}"></script>
 <script>
   function retornaid(id){
@@ -221,7 +196,7 @@
     }
 $(document).ready(function(){
         //codigo para inicializar a data table
-     var table=$('#datatable').DataTable();
+        $('#ModalUpdate').modal('show');
 });
 </script>
 

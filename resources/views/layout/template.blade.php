@@ -117,6 +117,14 @@ if(Auth::check())
                             </ul>
                         </li>
 
+
+                        <li>
+                            <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Categoria</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li><a title="All Courses" href="{{url('/categorias')}}"><span class="mini-sub-pro">Ver todos</span></a></li>
+                            </ul>
+                        </li>
+
                         <li>
                             <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Arquivamento</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
