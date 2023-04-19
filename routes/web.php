@@ -60,4 +60,4 @@ Route::post('/categoria/registar',[CategoriaController::class,'store'])->middlew
 Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit'])->middleware('auth');
 Route::put('/categoria/update',[CategoriaController::class,'update'])->middleware('auth');
 //
-Route::get('/categorias', [TrabalhoController::class,'index'])->middleware('auth');
+Route::get('/trabalhos', [TrabalhoController::class,'index'])->middleware('auth');

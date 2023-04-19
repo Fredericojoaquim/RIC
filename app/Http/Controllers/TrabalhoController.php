@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ColecaoModel;
+use App\Models\TrabalhoModel;
 
 class TrabalhoController extends Controller
 {
@@ -16,8 +18,8 @@ class TrabalhoController extends Controller
      public function allwork()
      {
          //
-         $trabalhos=ColecaoModel::all();
-         return    $trabalhos;
+         $trabalhos=TrabalhoModel::all();
+         return  $trabalhos;
      }
 
 
