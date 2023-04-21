@@ -65,3 +65,11 @@ body {
 .margin-left{
     margin-left: 30px;;
 }
+
+.font-color{
+    color: aliceblue!important;
+}
+
+.mt-mine{
+ margin-top: 4px;
+}

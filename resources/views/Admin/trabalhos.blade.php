@@ -57,6 +57,7 @@
                                                 <th >Categoria</th>
                                                 <th >Coleção</th>
                                                 <th >Autor</th>
+                                                <th >Estado</th>
                                                 <th >Acções</th>
 
                                             </tr>
@@ -75,16 +76,17 @@
                                                 <td>{{$t->categoria}}</td>
                                                 <td>{{$t->colecao}}</td>
                                                 <td>{{$t->autor}}</td>
+                                                <td>{{$t->estado}}</td>
 @php
 
 @endphp
 
 
 
-                                                <td>
+                                                <td class="d-flex justify-content-center">
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/categoria/edit/$t->cod")}}">Alterar</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a href="{{url("/categoria/edit/$t->cod")}}">detalhes</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm"> <a target="_blank" href="{{public_path("trabalhos/$t->caminho")}}">ver arquivo</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/categoria/edit/$t->cod")}}">detalhes</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Abrir</a> </button>
 
                                                 </td>
 

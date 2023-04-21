@@ -9,6 +9,7 @@ use App\Models\CategoriaModel;
 use App\Models\MetadadoModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class TrabalhoController extends Controller
 {
@@ -18,6 +19,15 @@ class TrabalhoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+     public function abrirPdf($caminho){
+
+        PDF::setOption(['isRemoteEnabled' => true]);
+        $pdf=new PDF ();
+       return $pdf->setPaper('a4')->stream( public_path($caminho),["Attachment"=> false] );
+
+
+
+     }
 
      public function allwork()
      {
@@ -163,5 +173,53 @@ class TrabalhoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function arquivamentoMediado(Request $request){
+
+
+        $t=new TrabalhoModel();
+        $t->user_id=$request->user_id;
+        $t->categoria_id=$request->categoria;
+        $t->colecao_id=$request->colecao;
+        $t->estado="aprovado";
+
+        //upload do arquivo
+        //dd($request->arquivo);
+
+        if($request->file('arquivo')->isValid()){
+
+            if($request->hasFile('arquivo')!=null){
+
+                $requestarquivo = $request->arquivo;
+                $extensao = $requestarquivo->extension();
+                $nomearquivo = md5($requestarquivo->getClientOriginalName().strtotime("now")).".".$extensao;
+                $request->arquivo->move(public_path('trabalhos'),$nomearquivo);
+                $t->caminho = $nomearquivo;
+            }else{
+                dd('entrou');
+                $t->caminho = null;
+            }
+        }else{
+            return "ficheiro inválido";
+        }
+
+        $t->save();
+        $m=new MetadadoModel();
+        $m->titulo=$request->titulo;
+        $m->autor=$request->autor;
+        $m->orientador=$request->orientador;
+        $m->lingua=$request->lingua;
+        $m->data_criacao=$request->data;
+        $m->local=$request->local;
+        $m->palavra=$request->palavra;
+        $m->formato= $extensao;
+        $m->resumo=$request->resumo;
+        $m->fontes=$request->fontes;
+        $m->trabalho_id=$t->id;
+        $m->save();
+
+        return view('admin.trabalhos',['trab'=>$this->allwork(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'sms'=>'Registado com sucesso']);
     }
 }

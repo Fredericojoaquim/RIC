@@ -61,5 +61,6 @@ Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit'])->middlewa
 Route::put('/categoria/update',[CategoriaController::class,'update'])->middleware('auth');
 //
 Route::get('/trabalhos', [TrabalhoController::class,'index'])->middleware('auth');
-Route::post('/trabalhos/registar',[TrabalhoController::class,'store'])->middleware('auth');
+Route::post('/trabalhos/registar',[TrabalhoController::class,'arquivamentoMediado'])->middleware('auth');
 Route::get('/trabalho', [TrabalhoController::class,'index'])->middleware('auth');
+Route::get('/trabalho/viewdocument/{caminho}', [TrabalhoController::class,'abrirPdf'])->middleware('auth');
