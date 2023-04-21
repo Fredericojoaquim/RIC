@@ -128,7 +128,7 @@ if(Auth::check())
                         <li>
                             <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Arquivamento</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Library" href="{{url('/trabalhos')}}"><span class="mini-sub-pro">Mediado</span></a></li>
+                                <li><a title="All Library" href="{{url('/trabalho')}}"><span class="mini-sub-pro">Mediado</span></a></li>
                                 <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Auto-Arquivamento</span></a></li>
                             </ul>
                         </li>
