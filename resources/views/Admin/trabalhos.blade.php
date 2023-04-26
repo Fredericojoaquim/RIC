@@ -52,13 +52,13 @@
                                         <thead>
                                             <tr>
 
-                                                <th>ID</th>
-                                                <th >Título</th>
-                                                <th >Categoria</th>
-                                                <th >Coleção</th>
-                                                <th >Autor</th>
-                                                <th >Estado</th>
-                                                <th >Acções</th>
+                                                <th data-field="id">ID</th>
+                                                <th data-field="titulo">Título</th>
+                                                <th data-field="categoria">Categoria</th>
+                                                <th data-field="colecao">Coleção</th>
+                                                <th data-field="autor">Autor</th>
+                                                <th data-field="estado">Estado</th>
+                                                <th data-field="acoes">Acções</th>
 
                                             </tr>
 
@@ -85,7 +85,7 @@
 
                                                 <td class="d-flex justify-content-center">
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/categoria/edit/$t->cod")}}">Alterar</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/categoria/edit/$t->cod")}}">detalhes</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/trabalho/detalhes/$t->cod")}}">detalhes</a> </button>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Abrir</a> </button>
 
                                                 </td>

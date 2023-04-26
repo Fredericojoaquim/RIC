@@ -38,7 +38,7 @@ Route::get('/teste', function () {
 });
 
 Route::get('/ric/login', function () {
-    return view('auth.mylogin');
+    return view('auth.login');
 });
 
 Route::get('/ric/user', function () {
@@ -64,3 +64,4 @@ Route::get('/trabalhos', [TrabalhoController::class,'index'])->middleware('auth'
 Route::post('/trabalhos/registar',[TrabalhoController::class,'arquivamentoMediado'])->middleware('auth');
 Route::get('/trabalho', [TrabalhoController::class,'index'])->middleware('auth');
 Route::get('/trabalho/viewdocument/{caminho}', [TrabalhoController::class,'abrirPdf'])->middleware('auth');
+Route::get('/trabalho/detalhes/{id}', [TrabalhoController::class,'detalhes'])->middleware('auth');

@@ -67,8 +67,13 @@
                                                 <td>{{$u->status}}</td>
                                                 <td>
                                                     <a href="" class="btn btn-custon-rounded-four btn-default  btn-sm">Alterar</a>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
+
+                                                    @if ($u->status =='ativo')
                                                     <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Bloquear</button>
+                                                    @else
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Desbloquear</button>
+                                                    @endif
+
                                                 </td>
 
                                             </tr>

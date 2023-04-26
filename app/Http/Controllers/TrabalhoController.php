@@ -10,6 +10,7 @@ use App\Models\MetadadoModel;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Auth;
 
 class TrabalhoController extends Controller
 {
@@ -63,7 +64,9 @@ class TrabalhoController extends Controller
 
 
     public function index()
+
     {
+
         return view('admin.trabalhos',['trab'=>$this->allwork(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory()]);
     }
 
@@ -183,10 +186,14 @@ class TrabalhoController extends Controller
         $t->user_id=$request->user_id;
         $t->categoria_id=$request->categoria;
         $t->colecao_id=$request->colecao;
-        $t->estado="aprovado";
+        if($this->userPermission(Auth::user()->id)=='Bibliotecário'){
+            $t->estado="aprovado";
+        }else{
+            $t->estado="aguarda por aprovação";
+        }
 
         //upload do arquivo
-        //dd($request->arquivo);
+       // dd($request->arquivo->getSize());
 
         if($request->file('arquivo')->isValid()){
 
@@ -198,7 +205,7 @@ class TrabalhoController extends Controller
                 $request->arquivo->move(public_path('trabalhos'),$nomearquivo);
                 $t->caminho = $nomearquivo;
             }else{
-                dd('entrou');
+
                 $t->caminho = null;
             }
         }else{
@@ -215,11 +222,40 @@ class TrabalhoController extends Controller
         $m->local=$request->local;
         $m->palavra=$request->palavra;
         $m->formato= $extensao;
+        $m->tamanho=$request->arquivo->getSize();
         $m->resumo=$request->resumo;
         $m->fontes=$request->fontes;
         $m->trabalho_id=$t->id;
         $m->save();
 
         return view('admin.trabalhos',['trab'=>$this->allwork(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'sms'=>'Registado com sucesso']);
+    }
+
+
+    public function userPermission($id){
+        $user=DB::table('model_has_permissions')
+        ->join('permissions','permission_id','=','permissions.id')
+        ->join('users','model_id','=','users.id')
+        ->where('users.id','=',$id)
+        ->select('users.*', 'permissions.name as permicao')
+        ->get();
+        return $user[0]->permicao;
+    }
+
+
+    public function detalhes($id){
+
+        $p=DB::table('metadados')
+        ->join('trabalhos','trabalhos.id','=','metadados.trabalho_id')
+        ->join('categorias','categorias.id','=','trabalhos.categoria_id')
+        ->join('colecoes','colecoes.id','=','trabalhos.colecao_id')
+        ->where('trabalhos.id','=',$id)
+        ->select('metadados.*','categorias.descricao as categoria', 'colecoes.descricao as colecao','trabalhos.*','trabalhos.id as cod')
+        ->get();
+
+        return view('admin.detalhes',['t'=>$p]);
+
+
+
     }
 }

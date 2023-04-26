@@ -161,7 +161,7 @@
 
 
                         <div class="col-lg-12 text-right">
-                            <button type="submit" class="btn btn-custon-rounded-four btn-primary">Registar</button>
+                            <button type="submit" class="btn btn-custon-rounded-four btn-primary">Alterar</button>
                             <a data-dismiss="modal" href="#" class="btn btn-custon-rounded-four btn-danger mb-4">Cancelar</a>
                         </div>
 

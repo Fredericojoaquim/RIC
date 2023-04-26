@@ -70,8 +70,12 @@
                                                 <td>{{$u->status}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/user/edit/$u->id")}}">Alterar</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Excluir</button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm" data-toggle="modal" data-target="#informationModal" id="{{$u->id}}" onclick="retornaid({{$u->id}})">Bloquear</button>
+
+                                                    @if ($u->status =='ativo')
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Bloquear</button>
+                                                    @else
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Desbloquear</button>
+                                                    @endif
                                                 </td>
 
                                             </tr>
