@@ -19,7 +19,11 @@ use App\Http\Controllers\TrabalhoController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pagina-inicial.home');
+});
+
+Route::get('/pesquisar', function () {
+    return view('pagina-inicial.pesquisar');
 });
 
 Route::get('/dashboard', function () {
@@ -38,7 +42,7 @@ Route::get('/teste', function () {
 });
 
 Route::get('/ric/login', function () {
-    return view('auth.login');
+    return view('auth.myLogin');
 });
 
 Route::get('/ric/user', function () {
