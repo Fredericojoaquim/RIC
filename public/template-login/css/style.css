@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+body{
+    margin: 0;
+    font-family: 'Lato', Helvetica, sans-serif, sans-serif;
+}
+
+body *{
+    box-sizing: border-box;
+}
+
+.main-login{
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(to left, #00418b, #0078d2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-login{
+    width: 60%;
+    height: 100vh;
+    /* display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+}
+
+.left-login > h1{
+    font-size: 3vw;
+    color: #fff;
+}
+
+/* .left-login-img{
+    width: 40vw;
+} */
+
+.right-login{
+    width: 40%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-login{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 10px 40px #00000056;
+}
+
+.card-login .content-card-login{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.card-login > h1 {
+    color:  #00418b;
+    font-weight: 800;
+    margin: 0;
+}
+
+.textfield{
+    width: 100%;
+    display: flex;
+    flex-direction: column; /*Quando colocamos flex-direction antes do align e justify as orientacoes mudam o que era eixo x, passa  para y e o eixo y passa para x*/
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: whitesmoke;
+    color: rgb(47, 47, 47);
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #f9f9f956;
+    outline: none;
+    box-sizing: border-box; /*Div filho nunca passa a div pai*/
+}
+
+.textfield > label {
+    color: #00418b;
+    margin-bottom: 10px;
+}
+
+.textfield > input::placeholder{
+    color: gray;
+}
+
+.btn-login{
+    width: 100%;
+    padding: 16px 0;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    /* font-weight: 800; */
+    letter-spacing: 3px;
+    color: white;
+    background:  #0068cd;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #00ff8052;
+    transition: all 1s;
+}
+.btn-login:hover{
+    background:  #10589f;
+}
+
+.right-login-footer{
+    width: 50%;
+    height: 60px;
+    position: absolute;
+    z-index: 999;
+    bottom: 20px;
+}
+
+.patrocinio{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.right-login-footer-line{
+    height: 5px;
+    background-image: linear-gradient(90deg, #d0142c, #e56c1e, #f9b515);
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+
+
+
+@media only screen and (max-width: 950px){ /*quando tiver uma largura inferior a 950 o card-login mantem esse tamanho*/
+    .card-login{
+        width: 85%;
+        height: 90vh;
+    }
+
+    .left-login{
+        display: none;
+    }
+
+    .right-login{
+        width: 70%;
+    }
+    .card-login .content-card-login{
+        width: 80%;
+    }
+
+    .right-login-footer{
+        bottom: 100px;
+    }
+
+    .right-login-footer{
+        width: 59%;
+        height: 80px;
+        bottom: 20px;
+    }
+}
+
+@media only screen and (max-width: 600px)
+{
+    .main-login{
+        flex-direction: column;
+    }
+
+    .left-login{
+        display: none;
+    }
+
+    .right-login {
+        width: 100%;
+        height: auto;
+        margin-bottom: 5%;
+    }
+
+    /* .left-login-img{
+        width: 50vw;
+    } */
+
+    .card-login {
+        width: 90vw;
+        /* height: auto; */
+    }
+
+    .right-login-footer{
+        bottom: 100px;
+    }
+
+    .right-login-footer{
+        width: 90%;
+        height: 90px;
+        bottom: 20px;
+    }
+}
+@media only screen and (max-width: 255px){
+    .right-login-footer{
+        display: none;
+    }
+}
+/***************************SLIDE STYLE******************************/
+.slider{
+    /* position: relative; */
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.slides{
+    width: 400%;
+    height: 100vh;
+    display: flex;
+}
+
+.slides input{
+    display: none;
+}
+
+.slide{
+    position: relative;
+    z-index: 1;
+    /* transition: 2s; */
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.first{
+    opacity: 1;
+}
+
+.slide img{
+    width: 100%;
+    z-index: 1;
+}
+
+.slide .info{
+    position: absolute;
+    color: white;
+    bottom: 120px;
+    /* transition: all 5s; */
+    padding: 0 60px;
+}
+
+.slide .info h2{
+    color: whitesmoke;
+}
+
+.slide .info img{
+    width: 120px;
+}
+
+.manual-navigation{
+    position: absolute;
+    width: 10%;
+    margin-top: -40px;
+    display: flex;
+    margin-left: 12%;
+    justify-content: start;
+    z-index: 2;
+}
+
+.manual-btn{
+    border: 2px solid #c7c7c7;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.manual-btn:not(:last-child){
+    margin-right: 40px;
+}
+
+.manual-btn:hover{
+    background-color: #c7c7c7;
+}
+
+#radio1:checked ~ .first{
+    margin-left: 0;
+}
+
+#radio2:checked ~ .first{
+    margin-left: -25%;
+}
+
+#radio3:checked ~ .first{
+    margin-left: -50%;
+}
+
+#radio4:checked ~ .first{
+    margin-left: -75%;
+}
+
+.navigation-auto div{
+    border: 2px solid #20a6ff;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: .5s;
+}
+
+.navigation-auto{
+    position: absolute;
+    width: 10%;
+    margin-top: -40px;
+    display: flex;
+    margin-left: 12%;
+    justify-content: start;
+    z-index: 999;
+}
+
+.navigation-auto div:not(:last-child){
+    margin-right: 40px;
+}
+
+#radio1:checked ~ .navigation-auto .auto-btn1{
+    background-color: #FFF;
+}
+
+#radio2:checked ~ .navigation-auto .auto-btn2{
+    background-color: #FFF;
+}
+
+#radio3:checked ~ .navigation-auto .auto-btn3{
+    background-color: #FFF;
+}
+
+#radio4:checked ~ .navigation-auto .auto-btn4{
+    background-color: #FFF;
+}
+
+/************************FOOTER******************************/

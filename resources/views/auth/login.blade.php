@@ -4,7 +4,7 @@
 
         <x-slot name="logo">
             <a href="/">
-               <img src="{{url('img-welcome/mylogo.png')}}" alt="">
+               <img src="{{url('img-welcome/mylogo.png')}}" style="width: 250px;" alt="">
             </a>
         </x-slot>
 
@@ -39,12 +39,12 @@
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+                        Esqueceu sua palavra-passe?
                     </a> <br>
                 @endif
 
                 <x-button class="ml-3">
-                    {{ __('Login') }}
+                    Entrar
                 </x-button>
             </div>
         </form>
