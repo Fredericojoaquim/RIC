@@ -55,7 +55,8 @@ Route::post('/colecoes/registar',[ColecoesController::class,'store'])->middlewar
 Route::get('/colecoes/edit/{id}',[ColecoesController::class,'edit'])->middleware('auth');
 Route::put('/colecoes/update',[ColecoesController::class,'update'])->middleware('auth');
 //Categorias
-Route::get('/categorias', [CategoriaController::class,'index'])->middleware('auth');
+Route::get('/categorias', [CategoriaController::class,'index'])->middleware('can');
+
 Route::post('/categoria/registar',[CategoriaController::class,'store'])->middleware('auth');
 Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit'])->middleware('auth');
 Route::put('/categoria/update',[CategoriaController::class,'update'])->middleware('auth');
@@ -65,3 +66,7 @@ Route::post('/trabalhos/registar',[TrabalhoController::class,'arquivamentoMediad
 Route::get('/trabalho', [TrabalhoController::class,'index'])->middleware('auth');
 Route::get('/trabalho/viewdocument/{caminho}', [TrabalhoController::class,'abrirPdf'])->middleware('auth');
 Route::get('/trabalho/detalhes/{id}', [TrabalhoController::class,'detalhes'])->middleware('auth');
+//auto arquivamento
+Route::get('/autoarquiamento', [TrabalhoController::class,'autoArquivamento'])->middleware('auth');
+Route::post('/autoarquiamento/registar',[TrabalhoController::class,'autoArquivamento_Store'])->middleware('auth');
+Route::get('/autoarquiamentos', [TrabalhoController::class,'autoArquivamentos'])->middleware('auth');

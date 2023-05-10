@@ -70,7 +70,6 @@
                                                 <td>{{$u->status}}</td>
                                                 <td>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/user/edit/$u->id")}}">Alterar</a> </button>
-
                                                     @if ($u->status =='ativo')
                                                     <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Bloquear</button>
                                                     @else

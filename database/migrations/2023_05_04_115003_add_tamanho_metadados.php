@@ -15,6 +15,7 @@ class AddTamanhoMetadados extends Migration
     {
         Schema::table('metadados', function (Blueprint $table) {
             //
+            $table->string('tamanho');
         });
     }
 
@@ -26,7 +27,7 @@ class AddTamanhoMetadados extends Migration
     public function down()
     {
         Schema::table('metadados', function (Blueprint $table) {
-            $table->string('tamanho');
+            //
         });
     }
 }
