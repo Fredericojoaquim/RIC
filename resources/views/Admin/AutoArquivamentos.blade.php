@@ -85,8 +85,16 @@
                                                 <td class="d-flex justify-content-center">
 
                                                     <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/trabalho/detalhes/$t->cod")}}">detalhes</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Abrir</a> </button>
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Aprovar</a> </button>
+
+                                                   @if ($t->estado=='Pendente')
+                                                   <button type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Aprovar</a> </button>
+                                                   <button type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
+                                                    @else
+
+                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Aprovar</a> </button>
+                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
+
+                                                   @endif
 
                                                 </td>
 

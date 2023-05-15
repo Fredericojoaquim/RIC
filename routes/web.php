@@ -59,7 +59,7 @@ Route::post('/colecoes/registar',[ColecoesController::class,'store'])->middlewar
 Route::get('/colecoes/edit/{id}',[ColecoesController::class,'edit'])->middleware('auth');
 Route::put('/colecoes/update',[ColecoesController::class,'update'])->middleware('auth');
 //Categorias
-Route::get('/categorias', [CategoriaController::class,'index'])->middleware('can');
+Route::get('/categorias', [CategoriaController::class,'index'])->middleware('auth');
 
 Route::post('/categoria/registar',[CategoriaController::class,'store'])->middleware('auth');
 Route::get('/categoria/edit/{id}',[CategoriaController::class,'edit'])->middleware('auth');
@@ -74,3 +74,6 @@ Route::get('/trabalho/detalhes/{id}', [TrabalhoController::class,'detalhes'])->m
 Route::get('/autoarquiamento', [TrabalhoController::class,'autoArquivamento'])->middleware('auth');
 Route::post('/autoarquiamento/registar',[TrabalhoController::class,'autoArquivamento_Store'])->middleware('auth');
 Route::get('/autoarquiamentos', [TrabalhoController::class,'autoArquivamentos'])->middleware('auth');
+
+//profile
+Route::get('/user/profile', [UserController::class,'profile'])->middleware('auth');

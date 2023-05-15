@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-      <a class="navbar-brand" href="index.html"><img id="page-logo" src="{{ url('template-pagina-inicial/images/logo_white.png') }}"
+      <a class="navbar-brand" href="index.html"><img id="page-logo" src="{{ url('template-pagina-inicial/images/ric.png') }}"
           style="width: 90px; padding: 0; margin: 0;"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
         aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">

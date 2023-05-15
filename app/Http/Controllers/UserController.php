@@ -110,6 +110,15 @@ class UserController extends Controller
     public function edit($id)
     {
         //
+        $user=DB::table('model_has_permissions')
+        ->where('users.id','=',$id)
+        ->join('permissions','permission_id','=','permissions.id')
+        ->join('users','model_id','=','users.id')
+        ->select('users.*', 'permissions.name as permicao')
+        ->get();
+        return view('admin.Edit_user',['users'=>$this->allUser(),'user'=>$user]);
+
+
     }
 
     /**
@@ -145,6 +154,12 @@ class UserController extends Controller
         return view('admin.user',['users'=>$this->allUser(),'sms'=>'Utilizador Bloqueado com sucesso']);
 
 
+
+    }
+
+
+    public function profile(){
+      return   view('admin.profile');
 
     }
 }

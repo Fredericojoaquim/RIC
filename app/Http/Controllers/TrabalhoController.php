@@ -355,4 +355,13 @@ class TrabalhoController extends Controller
         return view('admin.AutoArquivamentos',['trab'=>$this->allAutoArquivamentos()]);
 
     }
+
+
+    public function aprovar($id){
+        $c=['estado'=>'aprovado'];
+
+        TrabalhoModel::findOrFail($id)->update($c);
+       return view('admin.autoarquivamento',['trab'=>$this->allAutoArquivamento(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory()]);
+
+    }
 }

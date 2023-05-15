@@ -69,11 +69,21 @@
                                                 <td>{{$u->permicao}}</td>
                                                 <td>{{$u->status}}</td>
                                                 <td>
+
+
                                                     <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/user/edit/$u->id")}}">Alterar</a> </button>
-                                                    @if ($u->status =='ativo')
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Bloquear</button>
+
+                                                    @if ($u->status=='bloqueado')
+
+                                                    <button type="button" disabled class="btn btn-custon-rounded-four btn-danger  btn-sm">Bloquear</button>
+
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-success  btn-sm">Desbloquear</button>
                                                     @else
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-warning  btn-sm">Desbloquear</button>
+
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger  btn-sm">Bloquear</button>
+
+                                                    <button type="button" disabled class="btn btn-custon-rounded-four btn-success  btn-sm">Desbloquear</button>
+
                                                     @endif
                                                 </td>
 

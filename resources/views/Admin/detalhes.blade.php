@@ -116,7 +116,7 @@
                                           <td>{{$t[0]->titulo}}</td>
                                           <td>{{$t[0]->tamanho}}MB</td>
                                           <td>{{$t[0]->formato}}</td>
-                                          <td><button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t[0]->caminho)}}">Abrir Aarquivo</a> </button></td>
+                                          <td><button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t[0]->caminho)}}">Abrir Arquivo</a> </button></td>
                                         </tbody>
                                       </table>
 

@@ -112,7 +112,7 @@ if(Auth::check())
                                 <li><a title="Dashboard v.1" href="{{url('/user')}}"><span class="mini-sub-pro">Ver todos</span></a></li>
                                 @endcan
 
-                                <li><a title="Dashboard v.1" href="{{url('#')}}"><span class="mini-sub-pro">Meu perfil</span></a></li>
+                                <li><a title="Dashboard v.1" href="{{url('/user/profile')}}"><span class="mini-sub-pro">Meu perfil</span></a></li>
                             </ul>
                         </li>
 
@@ -138,8 +138,9 @@ if(Auth::check())
                         <li>
                             <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Arquivamento</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="All Library" href="{{url('/trabalho')}}"><span class="mini-sub-pro">Mediado</span></a></li>
                                 <li><a title="Add Library" href="{{url('/autoarquiamentos')}}"><span class="mini-sub-pro">Auto-Arquivamento</span></a></li>
+                                <li><a title="All Library" href="{{url('/trabalho')}}"><span class="mini-sub-pro">Mediado</span></a></li>
+
                             </ul>
                         </li>
                         @endcan
