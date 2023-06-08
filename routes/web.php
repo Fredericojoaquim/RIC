@@ -70,6 +70,7 @@ Route::post('/trabalhos/registar',[TrabalhoController::class,'arquivamentoMediad
 Route::get('/trabalho', [TrabalhoController::class,'index'])->middleware('auth');
 Route::get('/trabalho/viewdocument/{caminho}', [TrabalhoController::class,'abrirPdf'])->middleware('auth');
 Route::get('/trabalho/detalhes/{id}', [TrabalhoController::class,'detalhes'])->middleware('auth');
+Route::post('/trabalhos/aprovar', [TrabalhoController::class,'aprovar'])->middleware('auth');
 //auto arquivamento
 Route::get('/autoarquiamento', [TrabalhoController::class,'autoArquivamento'])->middleware('auth');
 Route::post('/autoarquiamento/registar',[TrabalhoController::class,'autoArquivamento_Store'])->middleware('auth');

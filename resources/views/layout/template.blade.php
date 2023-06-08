@@ -100,6 +100,7 @@ if(Auth::check())
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
+                        @can('Bibliotecário')
                         <li class="">
 
                             <a class="has-arrow" href="index.html">
@@ -108,13 +109,14 @@ if(Auth::check())
 								</a>
 
                             <ul class="submenu-angle" aria-expanded="true">
-                                @can('Bibliotecário')
+
                                 <li><a title="Dashboard v.1" href="{{url('/user')}}"><span class="mini-sub-pro">Ver todos</span></a></li>
-                                @endcan
+
 
                                 <li><a title="Dashboard v.1" href="{{url('/user/profile')}}"><span class="mini-sub-pro">Meu perfil</span></a></li>
                             </ul>
                         </li>
+                        @endcan
 
                         @can('Bibliotecário')
                         <li>
@@ -151,6 +153,26 @@ if(Auth::check())
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li><a title="All Students" href="{{url('/autoarquiamento')}}"><span class="mini-sub-pro">Ver todos</span></a></li>
 
+                            </ul>
+                        </li>
+                        @endcan
+
+
+
+                        @can('Docente/Pesquisador')
+                        <li class="">
+
+                            <a class="has-arrow" href="index.html">
+								   <span class="educate-icon educate-home icon-wrap"></span>
+								   <span class="mini-click-non">Meus depósitos</span>
+								</a>
+
+                            <ul class="submenu-angle" aria-expanded="true">
+
+                                <li><a title="Dashboard v.1" href="{{url('/user')}}"><span class="mini-sub-pro">Auto Arquivamento</span></a></li>
+
+
+                                <li><a title="Dashboard v.1" href="{{url('/user/profile')}}"><span class="mini-sub-pro">Arquivamento Mediado</span></a></li>
                             </ul>
                         </li>
                         @endcan

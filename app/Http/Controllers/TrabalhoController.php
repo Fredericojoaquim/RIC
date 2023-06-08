@@ -180,9 +180,9 @@ class TrabalhoController extends Controller
 
 
         $t=new TrabalhoModel();
-        $t->user_id=$request->user_id;
-        $t->categoria_id=$request->categoria;
-        $t->colecao_id=$request->colecao;
+        $t->user_id=$this->clear($request->user_id);
+        $t->categoria_id=$this->clear($request->categoria);
+        $t->colecao_id=$this->clear($request->colecao);
         $t->tipo="Arquivamento Mediado";
         $t->estado="aprovado";
 
@@ -204,22 +204,22 @@ class TrabalhoController extends Controller
                 $t->caminho = null;
             }
         }else{
-            return "ficheiro inválido";
+            return view('admin.trabalhos',['trab'=>$this->allwork(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'erro'=>'Ficheiro inválido']);
         }
 
         $t->save();
         $m=new MetadadoModel();
-        $m->titulo=$request->titulo;
-        $m->autor=$request->autor;
-        $m->orientador=$request->orientador;
-        $m->lingua=$request->lingua;
-        $m->data_criacao=$request->data;
-        $m->local=$request->local;
-        $m->palavra=$request->palavra;
+        $m->titulo=$this->clear($request->titulo);
+        $m->autor=$this->clear($request->autor);
+        $m->orientador=$this->clear($request->orientador);
+        $m->lingua=$this->clear($request->lingua);
+        $m->data_criacao=$this->clear($request->data);
+        $m->local=$this->clear($request->local);
+        $m->palavra=$this->clear($request->palavra);
         $m->formato= $extensao;
         $m->tamanho=$request->arquivo->getSize();
-        $m->resumo=$request->resumo;
-        $m->fontes=$request->fontes;
+        $m->resumo=$this->clear($request->resumo);
+        $m->fontes=$this->clear($request->fontes);
         $m->trabalho_id=$t->id;
 
         $m->tamanho=ceil($request->arquivo->getSize()/2048);
@@ -230,24 +230,28 @@ class TrabalhoController extends Controller
 
 
     public function userPermission($id){
+        $input=$this->clear($id);
+
         $user=DB::table('model_has_permissions')
         ->join('permissions','permission_id','=','permissions.id')
         ->join('users','model_id','=','users.id')
-        ->where('users.id','=',$id)
+        ->where('users.id','=','?')
         ->select('users.*', 'permissions.name as permicao')
-        ->get();
+        ->get([$input]);
         return $user[0]->permicao;
     }
 
 
     public function detalhes($id){
-
-        $p=DB::table('metadados')
-        ->join('trabalhos','trabalhos.id','=','metadados.trabalho_id')
-        ->join('categorias','categorias.id','=','trabalhos.categoria_id')
-        ->join('colecoes','colecoes.id','=','trabalhos.colecao_id')
-        ->where('trabalhos.id','=',$id)
-        ->select('metadados.*','categorias.descricao as categoria', 'colecoes.descricao as colecao','trabalhos.*','trabalhos.id as cod')
+        $input=$this->clear($id);
+      //  dd($input);
+        $p = DB::table('metadados')
+        ->join('trabalhos', 'trabalhos.id', '=', 'metadados.trabalho_id')
+        ->join('categorias', 'categorias.id', '=', 'trabalhos.categoria_id')
+        ->join('colecoes', 'colecoes.id', '=', 'trabalhos.colecao_id')
+        ->where('trabalhos.id', '=', DB::raw('?'))
+        ->select('metadados.*', 'categorias.descricao as categoria', 'colecoes.descricao as colecao', 'trabalhos.*', 'trabalhos.id as cod')
+        ->setBindings([$input])
         ->get();
 
         return view('admin.detalhes',['t'=>$p]);
@@ -268,9 +272,10 @@ class TrabalhoController extends Controller
         $size=($request->arquivo->getSize()/2048);
         //dd();
         $t=new TrabalhoModel();
-        $t->user_id=$request->user_id;
-        $t->categoria_id=$request->categoria;
-        $t->colecao_id=$request->colecao;
+
+        $t->user_id=$this->clear($request->user_id);
+        $t->categoria_id=$this->clear($request->categoria);
+        $t->colecao_id=$this->clear($request->colecao);
         $t->estado="Pendente";
         $t->tipo="Auto-Arquivameto";
 
@@ -283,28 +288,28 @@ class TrabalhoController extends Controller
                 $extensao = $requestarquivo->extension();
                 $nomearquivo = md5($requestarquivo->getClientOriginalName().strtotime("now")).".".$extensao;
                 $request->arquivo->move(public_path('trabalhos'),$nomearquivo);
-                $t->caminho = $nomearquivo;
+                $t->caminho = $this->clear($nomearquivo);
             }else{
                 //dd('entrou');
                 $t->caminho = null;
             }
         }else{
-            return "ficheiro inválido";
+            return view('admin.autoarquivamento',['trab'=>$this->allAutoArquivamento(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'erro'=>'Ficheiro inválido']);
         }
 
         $t->save();
         $m=new MetadadoModel();
-        $m->titulo=$request->titulo;
-        $m->autor=$request->autor;
-        $m->orientador=$request->orientador;
-        $m->lingua=$request->lingua;
-        $m->data_criacao=$request->data;
-        $m->local=$request->local;
-        $m->palavra=$request->palavra;
+        $m->titulo=$this->clear($request->titulo);
+        $m->autor=$this->clear($request->autor);
+        $m->orientador=$this->clear($request->orientador);
+        $m->lingua=$this->clear($request->lingua);
+        $m->data_criacao=$this->clear($request->data);
+        $m->local=$this->clear($request->local);
+        $m->palavra=$this->clear($request->palavra);
         $m->formato= $extensao;
-        $m->resumo=$request->resumo;
-        $m->fontes=$request->fontes;
-        $m->trabalho_id=$t->id;
+        $m->resumo=$this->clear($request->resumo);
+        $m->fontes=$this->clear($request->fontes);
+        $m->trabalho_id=$this->clear($t->id);
         $m->tamanho=ceil($size);
 
         $m->save();
@@ -357,11 +362,38 @@ class TrabalhoController extends Controller
     }
 
 
-    public function aprovar($id){
-        $c=['estado'=>'aprovado'];
+    public function aprovar(Request $request){
+        if(!$this->interValidation('trabalho_id')){
 
-        TrabalhoModel::findOrFail($id)->update($c);
-       return view('admin.autoarquivamento',['trab'=>$this->allAutoArquivamento(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory()]);
+            return view('admin.AutoArquivamentos',['trab'=>$this->allAutoArquivamento(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'erro'=>'O código deve ser um inteiro']);
 
+        }
+        $input=$this->clear($request->trabalho_id);
+       //DB::select('select * from trabalhos where id = ?', [$request->trabalho_id];);
+       //atualizando dados na BD prevenindo os ataques conhecidos
+        DB::update ('UPDATE trabalhos SET estado= ? WHERE id = ?',[
+            'aprovado',
+            $inpu
+        ]);
+
+       // TrabalhoModel::findOrFail($request->trabalho_id)->update($c);
+       return view('admin.autoarquivamento',['trab'=>$this->allAutoArquivamento(),'colecoes'=>$this->allColection(),'categorias'=>$this->allCategory(),'sms'=>'Trabalho aprovado com sucesso']);
+
+    }
+
+
+    public function interValidation($inputname){
+        if( filter_input(INPUT_POST, $inputname,FILTER_VALIDATE_INT)){
+            return true;
+        }
+        return false;
+    }
+
+
+    public function clear($input){
+
+        $texto=addslashes($input);
+        $texto=htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
+        return $texto;
     }
 }

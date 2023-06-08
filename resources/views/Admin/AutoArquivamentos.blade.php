@@ -21,6 +21,14 @@
                 <p class="text-center">{{$sms}}</p>
             </div>
             @endif
+
+
+            @if (isset($erro))
+            <div class="alert alert-danger alert-mg-b" role="alert">
+
+                <p class="text-center">{{$erro}}</p>
+            </div>
+            @endif
              <!-- Static Table Start -->
 
 
@@ -87,11 +95,11 @@
                                                     <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/trabalho/detalhes/$t->cod")}}">detalhes</a> </button>
 
                                                    @if ($t->estado=='Pendente')
-                                                   <button type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Aprovar</a> </button>
+                                                   <button type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine" data-toggle="modal" data-target="#DangerModalftblack"  onclick="retornaid({{$t->cod}})"> Aprovar </button>
                                                    <button type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
                                                     @else
 
-                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Aprovar</a> </button>
+                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine" data-toggle="modal" data-target="#PrimaryModalftblack"> Aprovar</button>
                                                     <button disabled type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
 
                                                    @endif
@@ -127,8 +135,34 @@
 
 
 
+<!-- Dangereux modal -->
+<div id="DangerModalftblack" class="modal modal-edu-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-close-area modal-close-df">
+                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+            </div>
+            <div class="modal-body">
+                <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
+                <h2>ATENÇÃO!</h2>
+                <p>Tem certeza que deseja aprovar este trabalho?</p>
+            </div>
+
+            <form action="{{url('/trabalhos/aprovar')}}" method="post">
+
+                @csrf
 
 
+                <div class="text-center">
+                    <input type="hidden" name="trabalho_id" id="trabalho_id"  > <br>
+                    <button type="submit" class="btn btn-custon-rounded-four btn-success  btn-md"> Sim </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
 
 
 
@@ -136,10 +170,13 @@
 
 
 <script src="{{url('js/vendor/jquery-1.12.4.min.js')}}"></script>
+
 <script>
+
   function retornaid(id){
-     $('#user_id').val(id);
+     $('#trabalho_id').val(id);
     }
+
 $(document).ready(function(){
         //codigo para inicializar a data table
         $('#ModalUpdate').modal('show');
