@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CategoriaModel;
+use Illuminate\Support\Facades\DB;
 
 class CategoriaController extends Controller
 {
@@ -88,8 +89,13 @@ class CategoriaController extends Controller
     public function update(Request $request)
     {
         //
-        $c=['descricao'=>$request->descricao];
-        CategoriaModel::findOrFail($request->id)->update($c);
+        //$c=['descricao'=>$request->descricao];
+        $descricao=$this->clear($request->descricao);
+        //CategoriaModel::findOrFail($request->id)->update($c);
+        DB::update ('UPDATE categorias SET descricao= ? WHERE id = ?',[
+            $descricao,
+            $request->id
+        ]);
         return view('admin.categoria',['cat'=>$this->allCategory(),'sms'=>'Categoria alterada com sucesso']);
     }
 
@@ -102,5 +108,12 @@ class CategoriaController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function clear($input){
+
+        $texto=addslashes($input);
+        $texto=htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
+        return $texto;
     }
 }

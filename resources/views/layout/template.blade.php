@@ -70,7 +70,14 @@
     <!-- modernizr JS
 		============================================ -->
         <link rel="stylesheet" href="{{url('css/mycss.css')}}">
+
+    <link rel="stylesheet" href="{{url('css/bootstrap-multiselect.css')}}">
+
     <script src="{{url('js/vendor/modernizr-2.8.3.min.js')}}"></script>
+
+    <link rel="stylesheet" href="{{url('css/mobiscroll.javascript.min.css')}}">
+    <script src="{{url('js/mobiscroll.javascript.min.js')}}"></script>
+
 </head>
 
 
@@ -100,7 +107,7 @@ if(Auth::check())
             <div class="left-custom-menu-adp-wrap comment-scrollbar">
                 <nav class="sidebar-nav left-sidebar-menu-pro">
                     <ul class="metismenu" id="menu1">
-                        @can('Bibliotecário')
+
                         <li class="">
 
                             <a class="has-arrow" href="index.html">
@@ -109,14 +116,15 @@ if(Auth::check())
 								</a>
 
                             <ul class="submenu-angle" aria-expanded="true">
+                                @can('Bibliotecário')
 
                                 <li><a title="Dashboard v.1" href="{{url('/user')}}"><span class="mini-sub-pro">Ver todos</span></a></li>
-
+                                @endcan
 
                                 <li><a title="Dashboard v.1" href="{{url('/user/profile')}}"><span class="mini-sub-pro">Meu perfil</span></a></li>
                             </ul>
                         </li>
-                        @endcan
+
 
                         @can('Bibliotecário')
                         <li>
@@ -140,7 +148,7 @@ if(Auth::check())
                         <li>
                             <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Arquivamento</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
-                                <li><a title="Add Library" href="{{url('/autoarquiamentos')}}"><span class="mini-sub-pro">Auto-Arquivamento</span></a></li>
+                                <li><a title="Add Library" href="{{url('/autoarquivamentos')}}"><span class="mini-sub-pro">Auto-Arquivamento</span></a></li>
                                 <li><a title="All Library" href="{{url('/trabalho')}}"><span class="mini-sub-pro">Mediado</span></a></li>
 
                             </ul>
@@ -169,7 +177,7 @@ if(Auth::check())
 
                             <ul class="submenu-angle" aria-expanded="true">
 
-                                <li><a title="Dashboard v.1" href="{{url('/user')}}"><span class="mini-sub-pro">Auto Arquivamento</span></a></li>
+                                <li><a title="Dashboard v.1" href="{{url('/docente/autoarquivamento')}}"><span class="mini-sub-pro">Auto Arquivamento</span></a></li>
 
 
                                 <li><a title="Dashboard v.1" href="{{url('/user/profile')}}"><span class="mini-sub-pro">Arquivamento Mediado</span></a></li>
@@ -572,7 +580,7 @@ if(Auth::check())
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
                                             <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..." class="search-int form-control">
+                                                <input type="text" disabled placeholder="Search..." class="search-int form-control">
                                                 <a href="#"><i class="fa fa-search"></i></a>
                                             </form>
                                         </div>

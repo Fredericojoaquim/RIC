@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ColecaoModel;
+use Illuminate\Support\Facades\DB;
 
 class ColecoesController extends Controller
 {
@@ -43,7 +44,7 @@ class ColecoesController extends Controller
     public function store(Request $request)
     {
         $c=new ColecaoModel();
-        $c->descricao=$request->descricao;
+        $c->descricao=$this->clear($request->descricao);
         $c->save();
         return view('admin.colecoe',['colecoes'=>$this->allColection(),'sms'=>'Coleção registada com sucesso']);
 
@@ -83,8 +84,14 @@ class ColecoesController extends Controller
     public function update(Request $request)
     {
         //
-        $c=['descricao'=>$request->descricao];
-        ColecaoModel::findOrFail($request->id)->update($c);
+        $descricao=$this->clear($request->descricao);
+        //CategoriaModel::findOrFail($request->id)->update($c);
+        DB::update ('UPDATE colecoes SET descricao= ? WHERE id = ?',[
+            $descricao,
+            $request->id
+        ]);
+       // $c=['descricao'=>$this->clear($request->descricao)];
+        //ColecaoModel::findOrFail($request->id)->update($c);
         return view('admin.colecoe',['colecoes'=>$this->allColection(),'sms'=>'Coleção alterada com sucesso']);
 
 
@@ -99,5 +106,11 @@ class ColecoesController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function clear($input){
+
+        $texto=addslashes($input);
+        $texto=htmlspecialchars($texto, ENT_QUOTES, 'UTF-8');
+        return $texto;
     }
 }

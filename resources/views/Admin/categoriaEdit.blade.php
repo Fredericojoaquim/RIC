@@ -155,7 +155,7 @@
                         {{ method_field('PUT') }}
 
                         <div class="form-group">
-                            <input name="descricao" type="text" value="{{$ca->descricao}}" class="form-control" placeholder="Nome da Categoria">
+                            <input name="descricao" type="text" value="{{$ca->descricao}}" id="descricao_alt" class="form-control" placeholder="Nome da Categoria">
                             <input name="id" type="hidden" value="{{$ca->id}}" >
                         </div>
 
@@ -194,6 +194,9 @@
 $(document).ready(function(){
         //codigo para inicializar a data table
         $('#ModalUpdate').modal('show');
+
+        var desc_alt=document.getElementById("descricao_alt");
+        desc_alt.focus();
 });
 </script>
 

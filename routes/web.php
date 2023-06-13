@@ -6,6 +6,7 @@ use App\Http\Controllers\ColecoesController;
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\TrabalhoController;
+use App\Http\Controllers\DocenteController;
 
 /*TrabalhoController:
 |--------------------------------------------------------------------------
@@ -68,13 +69,21 @@ Route::put('/categoria/update',[CategoriaController::class,'update'])->middlewar
 Route::get('/trabalhos', [TrabalhoController::class,'index'])->middleware('auth');
 Route::post('/trabalhos/registar',[TrabalhoController::class,'arquivamentoMediado'])->middleware('auth');
 Route::get('/trabalho', [TrabalhoController::class,'index'])->middleware('auth');
+
+Route::get('/trabalho/edit/{id}', [TrabalhoController::class,'edit'])->middleware('auth');
+Route::put('/trabalho/update', [TrabalhoController::class,'updateArqMediado'])->middleware('auth');
+
 Route::get('/trabalho/viewdocument/{caminho}', [TrabalhoController::class,'abrirPdf'])->middleware('auth');
 Route::get('/trabalho/detalhes/{id}', [TrabalhoController::class,'detalhes'])->middleware('auth');
 Route::post('/trabalhos/aprovar', [TrabalhoController::class,'aprovar'])->middleware('auth');
+Route::post('/trabalhos/rejeitar', [TrabalhoController::class,'Rejeitar'])->middleware('auth');
 //auto arquivamento
 Route::get('/autoarquiamento', [TrabalhoController::class,'autoArquivamento'])->middleware('auth');
 Route::post('/autoarquiamento/registar',[TrabalhoController::class,'autoArquivamento_Store'])->middleware('auth');
-Route::get('/autoarquiamentos', [TrabalhoController::class,'autoArquivamentos'])->middleware('auth');
+Route::get('/autoarquivamentos', [TrabalhoController::class,'autoArquivamentos'])->middleware('auth');
+//Docentes
+Route::get('/docente/autoarquivamento', [DocenteController::class,'autoArquivamentoIndex'])->middleware('auth');
+Route::post('/docente/autoarquivamento/Salvar', [DocenteController::class,'salvarAutoArq'])->middleware('auth');
 
 //profile
 Route::get('/user/profile', [UserController::class,'profile'])->middleware('auth');

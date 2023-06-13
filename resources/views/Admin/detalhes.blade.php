@@ -59,7 +59,30 @@
                                                 <td> <b>Título:</b> {{$t[0]->titulo}} </td>
                                             </tr>
                                             <tr>
-                                                <td><b>Autor(es): </b> {{$t[0]->autor}} </td>
+                                                @php
+                                                if(isset($autortrabalho)){
+                                                    $autor="";
+                                                    foreach($autortrabalho as $at){
+
+                                                        if($at->trabalho_id==$t[0]->cod){
+                                                            $autor=$autor." ; ".$at->name;
+                                                        }
+
+
+                                                    }
+                                                    $autor=ltrim($autor,' ;');
+
+                                                }
+
+                                                echo "<td><b>Autor (es): </b> $autor</td>";
+
+
+                                            @endphp
+
+
+                                            </tr>
+                                            <tr>
+                                                <td><b>Orientador: </b>{{$t[0]->orientador}}</td>
                                             </tr>
                                             <tr>
                                                 <td><b>Coleção: </b> {{$t[0]->colecao}} </td>

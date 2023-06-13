@@ -1,15 +1,8 @@
 @extends('layout.template')
 <link rel="stylesheet" href="{{url('css/modals.css')}}">
 
-<link rel="stylesheet" href="{{url('css/bootstrap-multiselect.css')}}">
-
-
-
-
-
-
-@section('title', 'RIC-Depósitos')
-@section('location', 'Depósitos')
+@section('title', 'RIC-Auto-Arquivamento')
+@section('location', 'Docente/Auto-Arquivamento')
 
 
 @section('content')
@@ -28,6 +21,13 @@
                 <p class="text-center">{{$sms}}</p>
             </div>
             @endif
+
+            @if (isset($erro))
+            <div class="alert alert-danger" role="alert">
+
+                <p class="text-center">{{$erro}}</p>
+            </div>
+            @endif
              <!-- Static Table Start -->
 
 
@@ -38,7 +38,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <button type="button" class="btn btn-custon-rounded-four btn-primary m-right btn-lg " data-toggle="modal" data-target="#PrimaryModalftblack">Registar</button>
                         <div class="sparkline13-list">
-                          <h3 class="text-center text-primary">  <strong>Trabalhos cientifico</strong> </h1>
+                          <h3 class="text-center text-primary">  <strong>Meus Depósitos</strong> </h1>
                         <div class="sparkline13-list">
                             <div class="sparkline13-hd">
                                 <div class="main-sparkline13-hd">
@@ -64,7 +64,6 @@
                                                 <th data-field="categoria">Categoria</th>
                                                 <th data-field="colecao">Coleção</th>
                                                 <th data-field="autor">Autor (es)</th>
-
                                                 <th data-field="estado">Estado</th>
                                                 <th data-field="acoes">Acções</th>
 
@@ -83,7 +82,6 @@
                                                 <td>{{$t->titulo}}</td>
                                                 <td>{{$t->categoria}}</td>
                                                 <td>{{$t->colecao}}</td>
-
                                                 @php
                                                     if(isset($autortrabalho)){
                                                         $autor="";
@@ -104,27 +102,23 @@
 
                                                 @endphp
 
-
-
-
-
-                                                @switch($t->estado)
-                                                @case('Pendente')
-                                                    <td> <span class="yellowcolor">{{$t->estado}} </span></td>
-                                                    @break
-                                                @case('Rejeitado')
-                                                <td> <span class="redcolor">{{$t->estado}}</span> </td>
-                                                    @break
-                                                @case('aprovado')
-                                                <td> <span class="greencolor">{{$t->estado}}</span> </td>
-                                                    @break
-                                            @endswitch
+                                             @switch($t->estado)
+                                                    @case('Pendente')
+                                                        <td> <span class="yellowcolor">{{$t->estado}} </span></td>
+                                                        @break
+                                                    @case('Rejeitado')
+                                                        <td> <span class="redcolor">{{$t->estado}}</span> </td>
+                                                        @break
+                                                    @case('aprovado')
+                                                        <td> <span class="greencolor">{{$t->estado}}</span> </td>
+                                                        @break
+                                             @endswitch
 
 
 
 
                                                 <td class="d-flex justify-content-center">
-                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/trabalho/edit/$t->cod")}}">Alterar</a> </button>
+                                                    <button type="button" class="btn btn-custon-rounded-four btn-default  btn-sm"> <a href="{{url("/categoria/edit/$t->cod")}}">Alterar</a> </button>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-info  btn-sm"> <a class="font-color"  href="{{url("/trabalho/detalhes/$t->cod")}}">detalhes</a> </button>
                                                     <button type="button" class="btn btn-custon-rounded-four btn-primary  btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Abrir</a> </button>
 
@@ -156,7 +150,7 @@
 <!-- Static Table End -->
 
 
-<!-- Modal register Trabalho-->
+<!-- Modal register Categoria-->
 
 <div id="PrimaryModalftblack" class="modal modal-edu-general default-popup-PrimaryModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">
@@ -167,9 +161,12 @@
             <div class="modal-body">
                 <i class="educate-icon educate-checked modal-check-pro"></i>
                 <h2>Registo de Trabalho cientifico</h2>
-                <div class="alert alert-danger alert-mg-b" role="alert" id="erro-registar" hidden> </div>
+
                 <div class="row">
-                    <form action = "{{url('/trabalhos/registar')}}"   method="Post" enctype="multipart/form-data" id="form-registar-trabalho">
+                    <div class="alert alert-danger alert-mg-b" role="alert" id="erro-registar" hidden> </div>
+
+
+                    <form action = "{{url('/docente/autoarquivamento/Salvar')}}"   method="Post" enctype="multipart/form-data" id="form-registar-trabalho">
                         @csrf
 
                         <div class=" row">
@@ -203,38 +200,23 @@
                                 </div>
 
                                 <div class="form-group col-lg-12 col-md-12 ">
+                                    <select name="orientador" class="form-control" id="orientador">
+                                        <option value="none" selected="" disabled="">Autor</option>
+                                        @if (isset($user))
 
-                                    <div mbsc-page class="demo-multiple-select">
-                                        <div style="">
-                                                <label>
-                                        Autor(es)
-                                        <input mbsc-input id="demo-multiple-select-input" placeholder="Please select..."  value="teste" data-dropdown="true" data-input-style="outline" data-label-style="stacked" data-tags="true" />
-                                    </label>
-                                    <select id="demo-multiple-select" name="autor[]" multiple>
-
-                                        @if (isset($estudantes))
-
-                                            @foreach ( $estudantes as $e )
-
-                                                 <option value="{{$e->id}}">{{$e->name}}</option>
-
-                                            @endforeach
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
 
                                         @endif
-
-
                                     </select>
-                                        </div>
-                                    </div>
                                 </div>
 
                                 <div class="form-group col-lg-6 col-md-12 ">
                                     <select name="orientador" class="form-control" id="orientador">
                                         <option value="none" selected="" disabled="">Orientador</option>
-                                        @if (isset($colecoes))
-                                            @foreach ($docentes as $d )
-                                        <option value="{{$d->id}}">{{$d->name}}</option>
-                                            @endforeach
+                                        @if (isset($user))
+
+                                        <option value="{{$user->id}}">{{$user->name}}</option>
+
                                         @endif
                                     </select>
                                 </div>
@@ -311,34 +293,16 @@
 
 
 
-<script src="{{ url('js/mobiscroll.javascript.min.js')}}"></script>
 <script src="{{url('js/vendor/jquery-1.12.4.min.js')}}"></script>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
-
-
-
 <script>
-
   function retornaid(id){
      $('#user_id').val(id);
     }
 $(document).ready(function(){
         //codigo para inicializar a data table
-
-
         mobiscroll.select('#demo-multiple-select', {
             inputElement: document.getElementById('demo-multiple-select-input')
         });
-
-        $('#ModalUpdate').modal('show');
-
-        mobiscroll.setOptions({
-        theme: 'ios',
-         themeVariant: 'light'
-        });
-
-
 
         btn_registar=document.getElementById("btn_registar");
         btn_registar.addEventListener('click', (event)=>{
@@ -373,7 +337,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Categoria </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                categoria.focus();
                 return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -383,7 +347,7 @@ $(document).ready(function(){
 
             erro.innerHTML="O campo <strong> Título </strong> é obrigatório";
             erro.removeAttribute('hidden');
-            nome.focus();
+            titulo.focus();
             return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -394,7 +358,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Autor </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                autor.focus();
                 return false;
              }else{
                 erro.setAttribute('hidden', true);
@@ -405,7 +369,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Orientador </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                orientador.focus();
                 return false;
             }else{
                 erro.setAttribute('hidden', true);
@@ -416,7 +380,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Língua </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                lingua.focus();
                 return false;
                 }else{
                 erro.setAttribute('hidden', true);
@@ -427,7 +391,7 @@ $(document).ready(function(){
 
             erro.innerHTML="O campo <strong> Data </strong> é obrigatório";
             erro.removeAttribute('hidden');
-            nome.focus();
+            data.focus();
             return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -438,7 +402,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Local </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                local.focus();
                 return false;
             }else{
                 erro.setAttribute('hidden', true);
@@ -449,7 +413,7 @@ $(document).ready(function(){
 
             erro.innerHTML="O campo <strong> Palavra </strong> é obrigatório";
             erro.removeAttribute('hidden');
-            nome.focus();
+            palavra.focus();
             return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -460,7 +424,7 @@ $(document).ready(function(){
 
             erro.innerHTML="O campo <strong> Resumo </strong> é obrigatório";
             erro.removeAttribute('hidden');
-            nome.focus();
+            resumo.focus();
             return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -470,7 +434,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> Fontes </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                fonte.focus();
                  return false;
             }else{
                 erro.setAttribute('hidden', true);
@@ -481,7 +445,7 @@ $(document).ready(function(){
 
                 erro.innerHTML="O campo <strong> arquivo </strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                arquivo.focus();
                 return false;
             }else{
                 erro.setAttribute('hidden', true);
@@ -493,7 +457,7 @@ $(document).ready(function(){
             if(!checkbox.checked){
                 erro.innerHTML="<strong> Por favor concorde com os termos de submissão</strong> é obrigatório";
                 erro.removeAttribute('hidden');
-                nome.focus();
+                checkbox.focus();
                 return false;
             }else{
             erro.setAttribute('hidden', true);
@@ -511,9 +475,9 @@ $(document).ready(function(){
 
 
         });
+
+
 });
-
-
 </script>
 
 @endsection

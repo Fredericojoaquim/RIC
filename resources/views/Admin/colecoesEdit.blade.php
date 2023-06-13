@@ -164,7 +164,7 @@
                         @csrf
 
                         <div class="form-group">
-                            <input name="descricao" value="{{$col->descricao}}" type="text" class="form-control" placeholder="Nome da Coleção">
+                            <input name="descricao" value="{{$col->descricao}}" id="descricao_alt" type="text" class="form-control" placeholder="Nome da Coleção">
                             <input name="id" value="{{$col->id}}" type="hidden">
                         </div>
 
@@ -191,6 +191,8 @@ $(document).ready(function(){
         //codigo para inicializar a data table
     // var table=$('#datatable').DataTable();
     $('#ModalUpdate').modal('show');
+    var desc_alt=document.getElementById("descricao_alt");
+        desc_alt.focus();
 
 });
 </script>

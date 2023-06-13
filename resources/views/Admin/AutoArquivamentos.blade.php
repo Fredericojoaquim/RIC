@@ -82,12 +82,37 @@
                                                 <td>{{$t->titulo}}</td>
                                                 <td>{{$t->categoria}}</td>
                                                 <td>{{$t->colecao}}</td>
-                                                <td>{{$t->autor}}</td>
-                                                <td>{{$t->estado}}</td>
-@php
+                                                @php
+                                                if(isset($autortrabalho)){
+                                                    $autor="";
+                                                    foreach($autortrabalho as $at){
 
-@endphp
+                                                        if($at->trabalho_id==$t->cod){
+                                                            $autor=$autor." ; ".$at->name;
+                                                        }
 
+
+                                                    }
+                                                    $autor=ltrim($autor,' ;');
+
+                                                }
+
+                                                echo "<td>$autor</td>";
+
+
+                                            @endphp
+
+                                                    @switch($t->estado)
+                                                        @case('Pendente')
+                                                            <td> <span class="yellowcolor">{{$t->estado}} </span></td>
+                                                            @break
+                                                        @case('Rejeitado')
+                                                        <td> <span class="redcolor">{{$t->estado}}</span> </td>
+                                                            @break
+                                                        @case('aprovado')
+                                                        <td> <span class="greencolor">{{$t->estado}}</span> </td>
+                                                            @break
+                                                    @endswitch
 
 
                                                 <td class="d-flex justify-content-center">
@@ -96,11 +121,11 @@
 
                                                    @if ($t->estado=='Pendente')
                                                    <button type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine" data-toggle="modal" data-target="#DangerModalftblack"  onclick="retornaid({{$t->cod}})"> Aprovar </button>
-                                                   <button type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
+                                                   <button  type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine" data-toggle="modal" data-target="#DangerModalRejeitar" onclick="retornaidRejeitar({{$t->cod}})">Rejeitar</button>
                                                     @else
 
                                                     <button disabled type="button" class="btn btn-custon-rounded-four btn-success  btn-sm font-color mt-mine" data-toggle="modal" data-target="#PrimaryModalftblack"> Aprovar</button>
-                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine"> <a class="font-color" target="_blank" href="{{asset('trabalhos/'.$t->caminho)}}">Rejeitar</a> </button>
+                                                    <button disabled type="button" class="btn btn-custon-rounded-four btn-danger btn-sm font-color mt-mine" data-toggle="modal" data-target="#DangerModalRejeitar">Rejeitar</button>
 
                                                    @endif
 
@@ -135,7 +160,7 @@
 
 
 
-<!-- Dangereux modal -->
+<!-- Dangereux modal aprovar trabalho -->
 <div id="DangerModalftblack" class="modal modal-edu-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -165,6 +190,35 @@
 </div>
 
 
+<!-- Dangereux modal rejeira trabalho -->
+<div id="DangerModalRejeitar" class="modal modal-edu-general FullColor-popup-DangerModal PrimaryModal-bgcolor fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-close-area modal-close-df">
+                <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+            </div>
+            <div class="modal-body">
+                <span class="educate-icon educate-danger modal-check-pro information-icon-pro"></span>
+                <h2>ATENÇÃO!</h2>
+                <p>Tem certeza que deseja Rejeitar este trabalho?</p>
+            </div>
+
+            <form action="{{url('/trabalhos/rejeitar')}}" method="post">
+
+                @csrf
+
+
+                <div class="text-center">
+                    <input type="hidden" name="trabalho_id" id="trabalho_id_rejeitar"  > <br>
+                    <button type="submit" class="btn btn-custon-rounded-four btn-success  btn-md"> Sim </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -175,6 +229,11 @@
 
   function retornaid(id){
      $('#trabalho_id').val(id);
+    }
+
+
+    function retornaidRejeitar(id){
+     $('#trabalho_id_rejeitar').val(id);
     }
 
 $(document).ready(function(){
